@@ -28,7 +28,7 @@ final case class PreprocessorOutput(
         __serializedSizeMemoized = __size
       }
       __size - 1
-      
+
     }
     def writeTo(`_output__`: _root_.com.google.protobuf.CodedOutputStream): _root_.scala.Unit = {
       optionsByFile.foreach { __v =>
@@ -77,7 +77,7 @@ object PreprocessorOutput extends scalapb.GeneratedMessageCompanion[scalapb.opti
           if (_unknownFields__ == null) {
             _unknownFields__ = new _root_.scalapb.UnknownFieldSet.Builder()
           }
-          _unknownFields__.parseField(tag, _input__)
+          val _ = _unknownFields__.parseField(tag, _input__)
       }
     }
     scalapb.options.PreprocessorOutput(
@@ -138,7 +138,7 @@ object PreprocessorOutput extends scalapb.GeneratedMessageCompanion[scalapb.opti
           __serializedSizeMemoized = __size
         }
         __size - 1
-        
+
       }
       def writeTo(`_output__`: _root_.com.google.protobuf.CodedOutputStream): _root_.scala.Unit = {
         key.foreach { __v =>
@@ -178,7 +178,7 @@ object PreprocessorOutput extends scalapb.GeneratedMessageCompanion[scalapb.opti
       def companion: scalapb.options.PreprocessorOutput.OptionsByFileEntry.type = scalapb.options.PreprocessorOutput.OptionsByFileEntry
       // @@protoc_insertion_point(GeneratedMessage[scalapb.PreprocessorOutput.OptionsByFileEntry])
   }
-  
+
   object OptionsByFileEntry extends scalapb.GeneratedMessageCompanion[scalapb.options.PreprocessorOutput.OptionsByFileEntry] {
     implicit def messageCompanion: scalapb.GeneratedMessageCompanion[scalapb.options.PreprocessorOutput.OptionsByFileEntry] = this
     def parseFrom(`_input__`: _root_.com.google.protobuf.CodedInputStream): scalapb.options.PreprocessorOutput.OptionsByFileEntry = {
@@ -198,7 +198,7 @@ object PreprocessorOutput extends scalapb.GeneratedMessageCompanion[scalapb.opti
             if (_unknownFields__ == null) {
               _unknownFields__ = new _root_.scalapb.UnknownFieldSet.Builder()
             }
-            _unknownFields__.parseField(tag, _input__)
+            val _ = _unknownFields__.parseField(tag, _input__)
         }
       }
       scalapb.options.PreprocessorOutput.OptionsByFileEntry(
@@ -251,7 +251,7 @@ object PreprocessorOutput extends scalapb.GeneratedMessageCompanion[scalapb.opti
     )
     // @@protoc_insertion_point(GeneratedMessageCompanion[scalapb.PreprocessorOutput.OptionsByFileEntry])
   }
-  
+
   implicit class PreprocessorOutputLens[UpperPB](_l: _root_.scalapb.lenses.Lens[UpperPB, scalapb.options.PreprocessorOutput]) extends _root_.scalapb.lenses.ObjectLens[UpperPB, scalapb.options.PreprocessorOutput](_l) {
     def optionsByFile: _root_.scalapb.lenses.Lens[UpperPB, _root_.scala.collection.immutable.Map[_root_.scala.Predef.String, scalapb.options.ScalaPbOptions]] = field(_.optionsByFile)((c_, f_) => c_.copy(optionsByFile = f_))
   }

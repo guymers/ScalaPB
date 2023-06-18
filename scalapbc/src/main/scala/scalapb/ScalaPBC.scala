@@ -5,14 +5,14 @@ import java.io.File
 import protocbridge.{ProtocBridge, ProtocCodeGenerator}
 import coursier.parse.DependencyParser
 import coursier.core.Configuration
-import com.github.ghik.silencer.silent
 import coursier.core.Dependency
 import java.net.URLClassLoader
 import java.util.jar.JarInputStream
 import java.io.FileInputStream
-import protocbridge.SandboxedJvmGenerator
-import scala.util.{Try, Success, Failure}
 import protocbridge.ProtocRunner
+import protocbridge.SandboxedJvmGenerator
+import scala.annotation.nowarn
+import scala.util.{Try, Success, Failure}
 
 case class Config(
     version: String = scalapb.compiler.Version.protobufVersion,
@@ -41,14 +41,20 @@ object ScalaPBC {
           case (false, "--")      => state.copy(passThrough = true)
           case (false, "--throw") => state.copy(cfg = state.cfg.copy(throwException = true))
           case (false, p) if p.startsWith(CustomGenArgument) =>
-            val Array(genName, klassName) = p.substring(CustomGenArgument.length).split('=')
-            val klass                     = Class.forName(klassName + "$")
-            val gen = klass.getField("MODULE$").get(klass).asInstanceOf[ProtocCodeGenerator]
+            val (genName, klassName) = {
+              val parts = p.substring(CustomGenArgument.length).split('=')
+              (parts.head, parts.drop(1).mkString("="))
+            }
+            val klass = Class.forName(klassName + "$")
+            val gen   = klass.getField("MODULE$").get(klass).asInstanceOf[ProtocCodeGenerator]
             state.copy(
               cfg = state.cfg.copy(namedGenerators = state.cfg.namedGenerators :+ (genName -> gen))
             )
           case (false, p) if p.startsWith(JvmPluginArgument) =>
-            val Array(genName, artifactName) = p.substring(JvmPluginArgument.length).split('=')
+            val (genName, artifactName) = {
+              val parts = p.substring(JvmPluginArgument.length).split('=')
+              (parts.head, parts.drop(1).mkString("="))
+            }
             state.copy(
               cfg = state.cfg.copy(jvmPlugins = state.cfg.jvmPlugins :+ (genName -> artifactName))
             )
@@ -73,7 +79,7 @@ object ScalaPBC {
       .cfg
   }
 
-  @silent("method right in class Either is deprecated")
+  @nowarn("cat=deprecation&msg=method right in class Either")
   def fetchArtifact(artifact: String): Either[String, (Dependency, Seq[File])] = {
     import coursier._
     for {
@@ -122,7 +128,6 @@ object ScalaPBC {
     }
   }
 
-  @silent("method right in class Either is deprecated")
   private[scalapb] def runProtoc(config: Config): Int = {
     if (
       config.namedGenerators

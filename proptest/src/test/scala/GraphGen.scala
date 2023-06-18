@@ -4,7 +4,6 @@ import scalapb.options.Scalapb.ScalaPbOptions
 import scalapb.compiler.{NameUtils, StreamType}
 import org.scalacheck.{Arbitrary, Gen}
 import scalapb.options.Scalapb.ScalaPbOptions.EnumValueNaming
-import scala.collection.compat._
 
 object GraphGen {
   import Nodes._
@@ -201,12 +200,10 @@ object GraphGen {
             GenTypes.genOptionsForField(myId, fieldType, protoSyntax, inOneof = inOneof)
           }
         )
-        fields = (fieldNames zip oneOfGroupings) zip (fieldTypes
-          .lazyZip(fieldOptions)
-          .lazyZip(fieldTags))
-          .toList map { case ((n, oog), (t, opts, tag)) =>
-          FieldNode(n, t, opts, oog, tag)
-        }
+        fields = ((fieldNames zip oneOfGroupings) zip (fieldTypes.zip(fieldOptions).zip(fieldTags)))
+          .map { case ((n, oog), ((t, opts), tag)) =>
+            FieldNode(n, t, opts, oog, tag)
+          }
       } yield (
         MessageNode(myId, name, messages, enums, fields, parentMessageId, state.currentFileId),
         state.closeNamespace

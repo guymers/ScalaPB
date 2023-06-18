@@ -20,8 +20,9 @@ class GeneratedCodeSpec extends AnyPropSpec with ScalaCheckDrivenPropertyChecks 
   property("min and max id are consecutive over files") {
     forAll(GraphGen.genRootNode) { node =>
       def validateMinMax(pairs: Seq[(Int, Int)]) =
-        pairs.sliding(2).filter(_.size == 2).forall { case Seq((min1, max1), (min2, max2)) =>
-          min2 == max1 + 1 && min1 <= max1 && min2 <= max2
+        pairs.sliding(2).filter(_.size == 2).forall {
+          case Seq((min1, max1), (min2, max2)) => min2 == max1 + 1 && min1 <= max1 && min2 <= max2
+          case _                               => false
         }
       val messageIdPairs: Seq[(Int, Int)] = node.files.flatMap { f =>
         (f.minMessageId.map((_, f.maxMessageId.get)))

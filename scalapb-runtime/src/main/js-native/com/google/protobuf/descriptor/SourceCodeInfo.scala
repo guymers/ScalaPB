@@ -125,7 +125,7 @@ object SourceCodeInfo extends scalapb.GeneratedMessageCompanion[com.google.proto
           if (_unknownFields__ == null) {
             _unknownFields__ = new _root_.scalapb.UnknownFieldSet.Builder()
           }
-          _unknownFields__.parseField(tag, _input__)
+          val _ = _unknownFields__.parseField(tag, _input__)
       }
     }
     com.google.protobuf.descriptor.SourceCodeInfo(
@@ -413,7 +413,7 @@ object SourceCodeInfo extends scalapb.GeneratedMessageCompanion[com.google.proto
             if (_unknownFields__ == null) {
               _unknownFields__ = new _root_.scalapb.UnknownFieldSet.Builder()
             }
-            _unknownFields__.parseField(tag, _input__)
+            val _ = _unknownFields__.parseField(tag, _input__)
         }
       }
       com.google.protobuf.descriptor.SourceCodeInfo.Location(

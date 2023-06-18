@@ -9,7 +9,6 @@ import com.google.protobuf.{
 import scalapb.lenses.Lens
 
 import scala.collection.mutable
-import scala.collection.compat._
 
 final case class UnknownFieldSet(
     private[scalapb] val fields: Map[Int, UnknownFieldSet.Field] = Map.empty
@@ -127,13 +126,15 @@ object UnknownFieldSet {
     def this(base: UnknownFieldSet) = {
       this()
       if (base.fields.nonEmpty) {
-        fieldBuilders ++= base.fields.view.mapValues(Field.Builder.fromField)
+        base.fields.foreach { case (i, f) =>
+          fieldBuilders += (i -> Field.Builder.fromField(f))
+        }
       }
     }
 
     def result() =
       if (fieldBuilders.isEmpty) UnknownFieldSet.empty
-      else new UnknownFieldSet(fieldBuilders.view.mapValues(_.result()).toMap)
+      else new UnknownFieldSet(fieldBuilders.view.map { case (i, b) => (i, b.result()) }.toMap)
 
     def parseField(tag: Int, input: CodedInputStream) = {
       val fieldNumber = WireType.getTagFieldNumber(tag)

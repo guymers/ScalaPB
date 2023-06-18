@@ -101,7 +101,7 @@ final case class FieldOptions(
         __serializedSizeMemoized = __size
       }
       __size - 1
-      
+
     }
     def writeTo(`_output__`: _root_.com.google.protobuf.CodedOutputStream): _root_.scala.Unit = {
       `type`.foreach { __v =>
@@ -270,7 +270,7 @@ object FieldOptions extends scalapb.GeneratedMessageCompanion[scalapb.options.Fi
           if (_unknownFields__ == null) {
             _unknownFields__ = new _root_.scalapb.UnknownFieldSet.Builder()
           }
-          _unknownFields__.parseField(tag, _input__)
+          val _ = _unknownFields__.parseField(tag, _input__)
       }
     }
     scalapb.options.FieldOptions(

@@ -211,7 +211,7 @@ object UninterpretedOption extends scalapb.GeneratedMessageCompanion[com.google.
           if (_unknownFields__ == null) {
             _unknownFields__ = new _root_.scalapb.UnknownFieldSet.Builder()
           }
-          _unknownFields__.parseField(tag, _input__)
+          val _ = _unknownFields__.parseField(tag, _input__)
       }
     }
     com.google.protobuf.descriptor.UninterpretedOption(
@@ -367,7 +367,7 @@ object UninterpretedOption extends scalapb.GeneratedMessageCompanion[com.google.
             if (_unknownFields__ == null) {
               _unknownFields__ = new _root_.scalapb.UnknownFieldSet.Builder()
             }
-            _unknownFields__.parseField(tag, _input__)
+            val _ = _unknownFields__.parseField(tag, _input__)
         }
       }
       if (__requiredFields0 != 0L) { throw new _root_.com.google.protobuf.InvalidProtocolBufferException("Message missing required fields.") } 

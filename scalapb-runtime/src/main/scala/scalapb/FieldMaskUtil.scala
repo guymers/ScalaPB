@@ -103,7 +103,7 @@ object FieldMaskUtil {
     fieldMask.paths.foreach { path =>
       if (!path.isEmpty) {
         if (!first) {
-          buf.append(',')
+          val _ = buf.append(',')
         }
         lowerSnakeCaseToCamelCaseWithBuffer(path, buf)
         first = false

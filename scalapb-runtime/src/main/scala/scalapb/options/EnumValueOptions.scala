@@ -45,7 +45,7 @@ final case class EnumValueOptions(
         __serializedSizeMemoized = __size
       }
       __size - 1
-      
+
     }
     def writeTo(`_output__`: _root_.com.google.protobuf.CodedOutputStream): _root_.scala.Unit = {
       `extends`.foreach { __v =>
@@ -117,7 +117,7 @@ object EnumValueOptions extends scalapb.GeneratedMessageCompanion[scalapb.option
           if (_unknownFields__ == null) {
             _unknownFields__ = new _root_.scalapb.UnknownFieldSet.Builder()
           }
-          _unknownFields__.parseField(tag, _input__)
+          val _ = _unknownFields__.parseField(tag, _input__)
       }
     }
     scalapb.options.EnumValueOptions(
